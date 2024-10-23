@@ -6,15 +6,18 @@ public class MissilePool : MonoBehaviour
     private ObjectPool<Missile> _pool;
     [SerializeField] private GameObject _missilePrefab;
     [SerializeField] private float _launchSpeed = 35f;
+    [SerializeField] private ParticleSystem _shootParticles;
 
     private void Start()
     {
         _pool = new ObjectPool<Missile>(CreateNewBullet, OnGet, OnRelease);
+        var mainParticleModule = _shootParticles.main;
+        mainParticleModule.startSpeed = _launchSpeed;
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
             Shoot();
     }
 
@@ -39,6 +42,7 @@ public class MissilePool : MonoBehaviour
 
     public void Shoot()
     {
+        _shootParticles.Play();
         var bullet = _pool.Get();
         bullet.GetComponent<Rigidbody>().velocity = transform.forward * _launchSpeed;
     }

@@ -15,12 +15,6 @@ public class MissilePool : MonoBehaviour
         mainParticleModule.startSpeed = _launchSpeed;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            Shoot();
-    }
-
     private Missile CreateNewBullet()
     {
         GameObject bullet = Instantiate(_missilePrefab);

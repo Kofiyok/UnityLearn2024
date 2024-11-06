@@ -4,7 +4,6 @@ using UnityEngine;
 public class Missile : MonoBehaviour
 {
     public MissilePool Parent;
-    [SerializeField] private GameObject _obj;
     [SerializeField] private float _damage = 50;
 
     private void OnEnable()

@@ -38,6 +38,7 @@ public class MissilePool : MonoBehaviour
     {
         _shootParticles.Play();
         var bullet = _pool.Get();
+        print(bullet.name);
         bullet.GetComponent<Rigidbody>().velocity = transform.forward * _launchSpeed;
     }
 
